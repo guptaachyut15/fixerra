@@ -1,0 +1,15 @@
+version: '1'
+services:
+  mongodb:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+  custom_app:
+    build: ./
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - PORT=8080
+      - CONNECTIONSTRING=mongodb://mongodb:27017/fixerra-db
